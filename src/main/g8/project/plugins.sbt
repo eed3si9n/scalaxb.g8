@@ -1,3 +1,3 @@
-resolvers += ("ScalaTools Nexus Snapshots" at "http://nexus.scala-tools.org/content/repositories/snapshots/")
+resolvers += ("Sonatype Public" at "https://oss.sonatype.org/content/repositories/public/")
 
 addSbtPlugin("org.scalaxb" % "sbt-scalaxb" % "$scalaxb_version$")
