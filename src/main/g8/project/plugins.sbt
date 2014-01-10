@@ -1,3 +1,3 @@
-resolvers += "sonatype-public" at "https://oss.sonatype.org/content/groups/public"
+resolvers += Resolver.sonatypeRepo("public")
 
 addSbtPlugin("org.scalaxb" % "sbt-scalaxb" % "$scalaxb_version$")
