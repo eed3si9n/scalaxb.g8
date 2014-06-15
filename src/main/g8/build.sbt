@@ -4,7 +4,7 @@ organization := "com.example"
 
 name := "$name$"
 
-scalaVersion := "2.10.3"
+scalaVersion := "2.11.1"
 
 scalaxbSettings
 
