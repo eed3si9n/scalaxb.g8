@@ -9,8 +9,12 @@ lazy val root = (project in file(".")).
   settings(
     organization  := "com.example",
     name          := "$name$",
-    scalaVersion  := "2.11.4",
-    libraryDependencies ++= Seq(scalaXml, scalaParser, dispatch)).
+    scalaVersion  := "$scala_version$",
+    libraryDependencies ++= Seq(dispatch),
+    libraryDependencies ++= {
+      if (scalaVersion.value startsWith "2.11") Seq(scalaXml, scalaParser)
+      else Seq()
+    }).
   settings(scalaxbSettings: _*).
   settings(
     sourceGenerators in Compile += (scalaxb in Compile).value,
