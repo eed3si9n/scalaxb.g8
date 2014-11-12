@@ -17,7 +17,7 @@ lazy val root = (project in file(".")).
     }).
   settings(scalaxbSettings: _*).
   settings(
-    sourceGenerators in Compile += (scalaxb in Compile).value,
+    sourceGenerators in Compile <+= (scalaxb in Compile),
     dispatchVersion in (Compile, scalaxb) := "$dispatch_version$",
     async in (Compile, scalaxb)           := true,
     packageName in (Compile, scalaxb)     := "$generated_package_name$"
