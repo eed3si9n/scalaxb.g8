@@ -1,24 +1,16 @@
-lazy val scalaXml = "org.scala-lang.modules" %% "scala-xml" % "1.0.6"
-lazy val scalaParser = "org.scala-lang.modules" %% "scala-parser-combinators" % "1.0.6"
-lazy val dispatchV = "$dispatch_version$"
-lazy val dispatch = "net.databinder.dispatch" %% "dispatch-core" % dispatchV
+import Dependencies._
 
-lazy val root = (project in file(".")).
-  enablePlugins(ScalaxbPlugin).
-  settings(inThisBuild(List(
-    organization  := "com.example",
-    scalaVersion  := "$scala_version$"
-  ))).
-  settings(
-    name          := "$name$",
-    libraryDependencies ++= Seq(dispatch),
-    libraryDependencies ++= {
-      if (scalaVersion.value startsWith "2.10") Seq()
-      else Seq(scalaXml, scalaParser)
-    }).
-  settings(
-    scalaxbDispatchVersion in (Compile, scalaxb) := dispatchV,
-    scalaxbPackageName in (Compile, scalaxb)     := "$generated_package_name$"
-    // scalaxbPackageNames in (Compile, scalaxb)    := Map(uri("http://schemas.microsoft.com/2003/10/Serialization/") -> "microsoft.serialization"),
-    // logLevel in (Compile, scalaxb) := Level.Debug
+ThisBuild / organization  := "com.example"
+ThisBuild / version := "0.1.0-SNAPSHOT"
+ThisBuild / scalaVersion := "$scala_version$"
+
+lazy val root = (project in file("."))
+  .enablePlugins(ScalaxbPlugin)
+  .settings(
+    name := "$name$",
+    libraryDependencies ++= Seq(dispatch, scalaXml, scalaParser, jaxbApi),
+    Compile / scalaxb / scalaxbDispatchVersion := dispatchV,
+    Compile / scalaxb / scalaxbPackageName := "$generated_package_name$",
+    // Compile / scalaxb / scalaxbPackageNames := Map(uri("http://schemas.microsoft.com/2003/10/Serialization/") -> "microsoft.serialization"),
+    // Compile / scalaxb / logLevel := Level.Debug,
   )
